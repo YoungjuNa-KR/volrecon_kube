@@ -1,0 +1,54 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: volrecon-train-$TRAIN_NAME
+spec:
+  template:
+    spec:
+      nodeSelector:
+        nvidia.com/gpu.product: NVIDIA-GeForce-RTX-4090
+      containers:
+      - name: main
+        image: sgvrcluster.kaist.ac.kr/youngju/volrecon-base:latest
+        imagePullPolicy: Always
+        # 작업에 필요한 적절한 리소스를 설정합니다.
+        resources:
+          limits:
+            cpu: 14
+            memory: "16Gi"
+            nvidia.com/gpu: $NUM_GPUS
+            ephemeral-storage: 128G
+          requests:
+            cpu: 1
+            memory: "8Gi"
+            nvidia.com/gpu: $NUM_GPUS
+            ephemeral-storage: 128G
+        command: ["sh", "script/train_dtu.sh"]
+        env:
+        - name: NAS_PATH
+          value: $NAS_PATH
+        - name: SSD_PATH
+          value: $SSD_PATH
+        - name: TRAIN_SH
+          value: $TRAIN_SH
+        volumeMounts:
+        - mountPath: $NAS_PATH
+          name: sgvr-nas2
+        - mountPath: $SSD_PATH
+          name: sgvr-ssd1
+        - mountPath: /dev/shm
+          name: dshm # to prevent insufficient shared memory error
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: regcred
+      volumes:
+      - name: sgvr-nas2
+        persistentVolumeClaim:
+          claimName: sgvr-nas-002-pvc
+      - name: sgvr-ssd1
+        persistentVolumeClaim:
+          claimName: sgvr-gpu-024-ssd1-pvc
+      - name: dshm  # to prevent insufficient shared memory error
+        emptyDir:
+          medium: Memory
+          sizeLimit: "32Gi"
