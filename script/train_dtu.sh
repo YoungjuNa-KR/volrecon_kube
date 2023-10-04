@@ -31,7 +31,7 @@ ln -s $NAS_PATH/youngju/vorlecon-kube/checkpoints .
 DATASET=datasets
 LOG_DIR=checkpoints
 
-ls -l DATASET
+ls -l datasets
 
 python main.py --max_epochs 16 --batch_size 2 --lr 0.0001 \
 --weight_rgb 1.0 --weight_depth 1.0 \
