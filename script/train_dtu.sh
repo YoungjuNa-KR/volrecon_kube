@@ -26,13 +26,13 @@ cd $WORKDIR
 echo "[$(date +%F_%H:%M:%S)] ### 2. Training"
 
 mkdir -p $SSD_PATH/youngju/volrecon-kube/checkpoints_log/lightning_logs
-ln -s $SSD_PATH/youngju/vorlecon-kube/checkpoints_log/lightning_logs ./logdir
+ln -s $SSD_PATH/youngju/vorlecon-kube/checkpoints_log/lightning_logs lightning_logs
 
 DATASET=datasets
-LOG_DIR=logdir
+LOG_DIR=lightning_logs
 
 ls -l datasets
-ls -l logdir
+ls -l lightning_logs
 
 python main.py --max_epochs 16 --batch_size 2 --lr 0.0001 \
 --weight_rgb 1.0 --weight_depth 1.0 \
