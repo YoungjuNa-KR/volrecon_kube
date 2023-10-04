@@ -25,8 +25,8 @@ cd $WORKDIR
 
 echo "[$(date +%F_%H:%M:%S)] ### 2. Training"
 
-mkdir -p $SSD_PATH/youngju/volrecon-kube/checkpoints_log/lightning_logs
-ln -s $SSD_PATH/youngju/vorlecon-kube/checkpoints_log/lightning_logs lightning_logs
+mkdir -p $SSD_PATH/youngju/volrecon_kube/checkpoints_log/lightning_logs
+ln -s $SSD_PATH/youngju/volrecon_kube/checkpoints_log/lightning_logs lightning_logs
 
 DATASET=datasets
 LOG_DIR=lightning_logs
