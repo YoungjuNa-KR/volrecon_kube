@@ -6,13 +6,13 @@ WORKDIR=$(pwd)
 DATABASEPATH=$NAS_PATH/youngju/
 DATAPATH=$DATABASEPATH/DTU
 
-mkdir -p $DATABASEPATH
-ln -s $DATABASEPATH datasets
+# mkdir -p $DATABASEPATH
+ln -s $DATAPATH datasets
 
 if [ -d "$DATAPATH" ]; then
     echo "Directory $DATAPATH exists. Skipping copy..."
 else
-    rsync -avh --progress $NAS_PATH/youngju/DTU_train.zip $DATABASEPATH
+    rsync -avh --progress $DATABASEPATH/DTU_train.zip $DATABASEPATH
     cd $DATABASEPATH
     unzip DTU_trian.zip
 fi
