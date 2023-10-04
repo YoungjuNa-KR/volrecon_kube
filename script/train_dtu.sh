@@ -29,7 +29,7 @@ mkdir -p $NAS_PATH/youngju/volrecon-kube/checkpoints_log
 ln -s $NAS_PATH/youngju/vorlecon-kube/checkpoints_log .
 
 DATASET=datasets
-LOG_DIR=checkpoints
+LOG_DIR=checkpoints_log
 
 ls -l datasets
 
