@@ -12,6 +12,7 @@ from pytorch_lightning.loggers import WandbLogger
 import pytorch_lightning as pl
 from pytorch_lightning import seed_everything
 from pytorch_lightning.utilities.model_summary import ModelSummary
+from pytorch_lightning import loggers as pl_loggers
 
 
 from code.model import VolRecon
@@ -150,12 +151,13 @@ if __name__ == "__main__":
         volrecon = VolRecon(args)
     
 
-    logger = WandbLogger(
-        name = "volrecon"+args.logdir.rsplit('/')[-1],
-        save_dir = args.logdir,
-        offline=True,
-    )
-
+    # logger = WandbLogger(
+    #     name = "volrecon"+args.logdir.rsplit('/')[-1],
+    #     save_dir = args.logdir,
+    #     offline=True,
+    # )
+    tb_logger = pl_loggers.TensorBoardLogger("./%s" % args.logdir)
+    
     # -------------------------------- trainer ---------------------------------------
     trainer = pl.Trainer(
         accelerator="gpu" if device=="cuda" else "cpu", 
@@ -163,7 +165,7 @@ if __name__ == "__main__":
         strategy = "ddp",
         max_epochs=args.max_epochs,
         check_val_every_n_epoch=1, 
-        logger=logger,
+        logger=tb_logger,
         num_sanity_val_steps=1,
         )
 
