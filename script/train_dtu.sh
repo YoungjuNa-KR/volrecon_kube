@@ -25,8 +25,8 @@ cd $WORKDIR
 
 echo "[$(date +%F_%H:%M:%S)] ### 2. Training"
 
-mkdir -p $NAS_PATH/youngju/volrecon-kube/checkpoints
-ln -s $NAS_PATH/youngju/vorlecon-kube/checkpoints .
+mkdir -p $NAS_PATH/youngju/volrecon-kube/checkpoints_log
+ln -s $NAS_PATH/youngju/vorlecon-kube/checkpoints_log .
 
 DATASET=datasets
 LOG_DIR=checkpoints
