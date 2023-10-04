@@ -13,6 +13,7 @@ if [ -d "$DATAPATH" ]; then
     echo "Directory $DATAPATH exists. Skipping copy..."
 else
     echo "Directory $DATAPATH not exists. Copying file..."
+    apt-get install rsync
     rsync -avh --progress $NAS_PATH/youngju/DTU_train.zip $DATABASEPATH
     cd $DATABASEPATH
     unzip DTU_train.zip
