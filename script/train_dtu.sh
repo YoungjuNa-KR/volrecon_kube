@@ -12,9 +12,9 @@ ln -s $DATABASEPATH datasets
 if [ -d "$DATAPATH" ]; then
     echo "Directory $DATAPATH exists. Skipping copy..."
 else
-    rsync -avh --progress $NAS_PATH/youngju/DTU/dtu_train.zip $DATABASEPATH
+    rsync -avh --progress $NAS_PATH/youngju/dtu_train.zip $DATABASEPATH
     cd $DATABASEPATH
-    unzip dtu_trian.zip
+    unzip dtu_train.zip
 fi
 
 cd $WORKDIR
