@@ -156,7 +156,7 @@ if __name__ == "__main__":
     #     save_dir = args.logdir,
     #     offline=True,
     # )
-    tb_logger = pl_loggers.TensorBoardLogger("./%s" % args.logdir)
+    tb_logger = pl_loggers.TensorBoardLogger(args.logdir)
     
     # -------------------------------- trainer ---------------------------------------
     trainer = pl.Trainer(
