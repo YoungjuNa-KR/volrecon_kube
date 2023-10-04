@@ -7,7 +7,7 @@ DATABASEPATH=$SSD_PATH/youngju/datasets
 DATAPATH=$DATABASEPATH/DTU
 
 mkdir -p $DATABASEPATH
-ln -s $DATABASEPATH datasets
+ln -s $DATAPATH datasets
 
 if [ -d "$DATAPATH" ]; then
     echo "Directory $DATAPATH exists. Skipping copy..."
