@@ -3,7 +3,7 @@
 echo "[$(date +%F_%H:%M:%S)] ### 1. [PRE] prepare dataset"
 
 WORKDIR=$(pwd)
-DATABASEPATH=$SSD_PATH/youngju/datasets
+DATABASEPATH=$NAS_PATH/youngju/
 DATAPATH=$DATABASEPATH/DTU
 
 mkdir -p $DATABASEPATH
@@ -12,9 +12,9 @@ ln -s $DATABASEPATH datasets
 if [ -d "$DATAPATH" ]; then
     echo "Directory $DATAPATH exists. Skipping copy..."
 else
-    rsync -avh --progress $NAS_PATH/youngju/DTU/dtu_train.zip $DATABASEPATH
+    rsync -avh --progress $NAS_PATH/youngju/DTU_train.zip $DATABASEPATH
     cd $DATABASEPATH
-    unzip dtu_trian.zip
+    unzip DTU_trian.zip
 fi
 
 cd $WORKDIR

@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: volrecon-train-$TRAIN_NAME
+  name: volrecon-train
 spec:
   template:
     spec:
@@ -16,21 +16,21 @@ spec:
           limits:
             cpu: 14
             memory: "16Gi"
-            nvidia.com/gpu: $NUM_GPUS
+            nvidia.com/gpu: 2
             ephemeral-storage: 128G
           requests:
             cpu: 1
             memory: "8Gi"
-            nvidia.com/gpu: $NUM_GPUS
+            nvidia.com/gpu: 2
             ephemeral-storage: 128G
         command: ["sh", "script/train_dtu.sh"]
         env:
         - name: NAS_PATH
-          value: $NAS_PATH
+          value: /mnt/nas2
         - name: SSD_PATH
-          value: $SSD_PATH
+          value: /mnt/ssd1
         - name: TRAIN_SH
-          value: $TRAIN_SH
+          value: script/dtu_train.sh
         volumeMounts:
         - mountPath: $NAS_PATH
           name: sgvr-nas2
