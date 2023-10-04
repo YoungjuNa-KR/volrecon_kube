@@ -22,6 +22,7 @@ fi
 
 cd $WORKDIR
 
+
 echo "[$(date +%F_%H:%M:%S)] ### 2. Training"
 
 mkdir -p $NAS_PATH/youngju/volrecon-kube/checkpoints
@@ -29,6 +30,8 @@ ln -s $NAS_PATH/youngju/vorlecon-kube/checkpoints .
 
 DATASET=datasets
 LOG_DIR=checkpoints
+
+ls -l DATASET
 
 python main.py --max_epochs 16 --batch_size 2 --lr 0.0001 \
 --weight_rgb 1.0 --weight_depth 1.0 \
