@@ -1,4 +1,4 @@
-FROM sgvrcluster.kaist.ac.kr/youngju/volreocn-base:latest
+FROM sgvrcluster.kaist.ac.kr/youngju/volrecon-base:latest
 
-COPY . /volrecon-kube
-WORKDIR /volrecon-kube
+COPY . /volrecon_kube
+# WORKDIR /volrecon_kube
